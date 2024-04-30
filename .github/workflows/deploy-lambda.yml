@@ -41,5 +41,7 @@ jobs:
           aws-region: us-east-2
           
       - name: deploy jar file on lambda
-        run: aws lambda update-function-code --function-name=testLambda --zip-file=fileb://testing-lambda-1.0-SNAPSHOT.jar
+        run: aws lambda update-function-code --function-name my-lambda-name --zip-file fileb://./target/testing-lambda-1.0-SNAPSHOT.jar
+        
+
         
