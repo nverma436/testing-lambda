@@ -40,6 +40,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
           
-      - name: deploy jar file on lambda
+      - name: upload jar file on S3
         run: aws s3 cp ./target/testing-lambda-1.0-SNAPSHOT.jar s3://nverma-lambda-code/ 
         
