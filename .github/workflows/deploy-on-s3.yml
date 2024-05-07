@@ -42,4 +42,4 @@ jobs:
           AWS_DEFAULT_REGION: us-east-1
           AWS_BUCKET_NAME: nverma-lambda-code
           BUCKET_PATH: "/pr/${{github.event.number}}"
-          DIST_LOCATION_CODE: ./target/testing-lambda-1.0-SNAPSHOT.jar
+          DIST_LOCATION_CODE: ./target
