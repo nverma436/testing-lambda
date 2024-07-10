@@ -41,9 +41,9 @@ jobs:
           desired_usernames=(${{ steps.readUsernames.outputs.usernames }})
 
       - run: |
-          echo '${ desired_usernames }'
-          echo '${{ desired_usernames && fromJson(desired_usernames).QA.source_aws_region }}'
-          echo '${{ desired_usernames && fromJson(desired_usernames).QA.destination_lambda_arn }}'
+          echo '${{ steps.readUsernames.outputs.usernames }}'
+          echo '${{ steps.readUsernames.outputs.usernames && fromJson(steps.readUsernames.outputs.usernames).QA.source_aws_region }}'
+          echo '${{ steps.readUsernames.outputs.usernames && fromJson(steps.readUsernames.outputs.usernames).QA.destination_lambda_arn }}'
           
 #      - run: |
  #         echo "LAMBDA_JSON=$(jq -c . < ./lambda_info.json)" >> $GITHUB_ENV
