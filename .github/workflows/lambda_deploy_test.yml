@@ -38,10 +38,10 @@ jobs:
 
       - name: Check if this github user is added in the list
         run: |
-          desired_usernames=(${{ steps.readUsernames.outputs.usernames }})
+          parsed_json=(${{ fromJson(steps.readUsernames.outputs.usernames) }})
+          echo '${parsed_json}'
 
       - run: |
-          echo '${{ steps.readUsernames.outputs.usernames }}'
           echo '${{ steps.readUsernames.outputs.usernames && fromJson(steps.readUsernames.outputs.usernames).QA.source_aws_region }}'
           echo '${{ steps.readUsernames.outputs.usernames && fromJson(steps.readUsernames.outputs.usernames).QA.destination_lambda_arn }}'
           
