@@ -30,11 +30,26 @@ jobs:
       - name: Run workflow2
         run: echo "Selected tag is ${{ github.ref_name }}"
 
+      - name: Fetch Userlist
+        id: readUsernames
+        run: |
+          cd ${{ github.workspace }}/aws-staging/performance/
+          echo "::set-output name=usernames::$(cat lambda_info.json | tr '\n' ' ')"
+
+      - name: Check if this github user is added in the list
+        run: |
+          desired_usernames=(${{ steps.readUsernames.outputs.usernames }})
+
       - run: |
-          echo "LAMBDA_JSON=$(jq -c . < ./lambda_info.json)" >> $GITHUB_ENV
-          echo '${{ env.LAMBDA_JSON && fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
-          echo '${{ env.LAMBDA_JSON && fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
-          echo '${{ env.LAMBDA_JSON }}'
+          echo '${ desired_usernames }'
+          echo '${{ desired_usernames && fromJson(desired_usernames).QA.source_aws_region }}'
+          echo '${{ desired_usernames && fromJson(desired_usernames).QA.destination_lambda_arn }}'
+          
+#      - run: |
+ #         echo "LAMBDA_JSON=$(jq -c . < ./lambda_info.json)" >> $GITHUB_ENV
+  #        echo '${{ env.LAMBDA_JSON && fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
+   #       echo '${{ env.LAMBDA_JSON && fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
+    #      echo '${{ env.LAMBDA_JSON }}'
 
 #          if [[ '${{ github.event.inputs.environment }}' == 'QA' ]]; then
  #           destination_lambda_arn = '${{ fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
