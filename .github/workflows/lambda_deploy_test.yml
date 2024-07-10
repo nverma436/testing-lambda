@@ -33,6 +33,7 @@ jobs:
       - name: Fetch Userlist
         id: readUsernames
         run: |
+          cd ${{ github.workspace }}/.github/workflows/
           echo "::set-output name=usernames::$(cat lambda_info.json | tr '\n' ' ')"
 
       - name: Check if this github user is added in the list
