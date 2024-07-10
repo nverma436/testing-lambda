@@ -36,9 +36,12 @@ jobs:
 
       - run: |
           echo "LAMBDA_JSON=$(jq -c . < lambda_info.json)" >> $GITHUB_ENV
-          if [[ '${{ github.event.inputs.environment }}' == 'QA' ]]; then
-            destination_lambda_arn = '${{ fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
-            source_aws_region = '${{ fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
-            source_s3_bucket = '${{ fromJson(env.LAMBDA_JSON).QA.source_s3_bucket }}'
-          fi
-          echo "${{ github.ref_name }}.jar is being updated on lambda - ${destination_lambda_arn}" 
+          echo '${{ fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
+          echo '${{ fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
+
+#          if [[ '${{ github.event.inputs.environment }}' == 'QA' ]]; then
+ #           destination_lambda_arn = '${{ fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
+  #          source_aws_region = '${{ fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
+   #         source_s3_bucket = '${{ fromJson(env.LAMBDA_JSON).QA.source_s3_bucket }}'
+    #      fi
+     #     echo "${{ github.ref_name }}.jar is being updated on lambda - ${destination_lambda_arn}"
