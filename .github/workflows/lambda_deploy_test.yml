@@ -27,10 +27,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT_GITHUB }}
-          fetch-depth: '0'
-
       - name: Run workflow2
         run: echo "Selected tag is ${{ github.ref_name }}"
 
