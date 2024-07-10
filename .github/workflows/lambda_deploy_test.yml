@@ -35,7 +35,7 @@ jobs:
         run: echo "Selected tag is ${{ github.ref_name }}"
 
       - run: |
-          echo "LAMBDA_JSON=$(jq -c . < ${{ github.workspace }}/.devops/lambda_info.json)" >> $GITHUB_ENV
+          echo "LAMBDA_JSON=$(jq -c . < lambda_info.json)" >> $GITHUB_ENV
           if [[ '${{ github.event.inputs.environment }}' == 'QA' ]]; then
             destination_lambda_arn = '${{ fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
             source_aws_region = '${{ fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
