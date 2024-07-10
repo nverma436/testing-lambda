@@ -38,8 +38,8 @@ jobs:
 
       - name: Check if this github user is added in the list
         run: |
-          parsed_json=(${{ fromJson(steps.readUsernames.outputs.usernames) }})
-          echo ${{ ${parsed_json}.QA.source_aws_region }}
+          parsed_json=(${{ fromJson(steps.readUsernames.outputs.usernames) }}.${{ github.event.inputs.environment }}.source_aws_region )
+          echo ${parsed_json}
 
       - run: |
           echo '${{ steps.readUsernames.outputs.usernames && fromJson(steps.readUsernames.outputs.usernames).QA.source_aws_region }}'
