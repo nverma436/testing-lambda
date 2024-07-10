@@ -1,0 +1,57 @@
+{
+  "QA":{
+    "destination_lambda_arn": "arn:aws:lambda:us-west-2:963202130184:function:fes-routing-lambda-qa",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "STAGING":{
+    "destination_lambda_arn": "arn:aws:lambda:us-west-2:963202130184:function:fes-routing-lambda-staging",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "UAT":{
+    "destination_lambda_arn": "fes-routing-lambda-uat",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "SEA":{
+    "destination_lambda_arn": "fes-routing-lambda-sea",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "CA":{
+    "destination_lambda_arn": "fes-routing-lambda-ca",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "AU":{
+    "destination_lambda_arn": "fes-routing-lambda-au",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "EU":{
+    "destination_lambda_arn": "fes-routing-lambda-eu",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "US":{
+    "destination_lambda_arn": "fes-routing-lambda-us",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "SG":{
+    "destination_lambda_arn": "fes-routing-lambda-sg",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "GCC":{
+    "destination_lambda_arn": "fes-routing-lambda-gcc",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  },
+  "WWW":{
+    "destination_lambda_arn": "fes-routing-lambda-www",
+    "source_aws_region": "us-west-2",
+    "source_s3_bucket": "fes-route-staging"
+  }
+}

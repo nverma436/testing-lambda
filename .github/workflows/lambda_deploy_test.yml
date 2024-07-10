@@ -1,0 +1,44 @@
+name: Lambda Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select Environment'
+        type: choice
+        required: true
+        default: 'QA'
+        options:
+          - QA
+          - STAGING
+          - UAT
+          - SEA
+          - CA
+          - AU
+          - EU
+          - US
+          - SG
+          - GCC
+          - WWW
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT_GITHUB }}
+          fetch-depth: '0'
+
+      - name: Run workflow2
+        run: echo "Selected tag is ${{ github.ref_name }}"
+
+      - run: |
+          echo "LAMBDA_JSON=$(jq -c . < ${{ github.workspace }}/.devops/lambda_info.json)" >> $GITHUB_ENV
+          if [[ '${{ github.event.inputs.environment }}' == 'QA' ]]; then
+            destination_lambda_arn = '${{ fromJson(env.LAMBDA_JSON).QA.destination_lambda_arn }}'
+            source_aws_region = '${{ fromJson(env.LAMBDA_JSON).QA.source_aws_region }}'
+            source_s3_bucket = '${{ fromJson(env.LAMBDA_JSON).QA.source_s3_bucket }}'
+          fi
+          echo "${{ github.ref_name }}.jar is being updated on lambda - ${destination_lambda_arn}" 
