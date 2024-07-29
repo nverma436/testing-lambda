@@ -40,7 +40,7 @@ jobs:
         run: |
           parsed_json=( ${{ fromJson(steps.readUsernames.outputs.usernames) }} )
           echo ${parsed_json.QA.source_aws_region}
-          echo ${{ fromJson(parsed_json).QA.source_aws_region }}
+#          echo ${{ fromJson(parsed_json).QA.source_aws_region }}
 
       - run: |
           echo '${{ steps.readUsernames.outputs.usernames && fromJson(steps.readUsernames.outputs.usernames).QA.source_aws_region }}'
